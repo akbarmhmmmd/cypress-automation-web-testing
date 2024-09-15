@@ -1,4 +1,4 @@
-describe("Swaglabs Web Page test", () => {
+describe("Swaglabs Web Automation Testing", () => {
   beforeEach(() => {
     cy.visit("https://www.saucedemo.com/v1/index.html");
     cy.url().should("include", "saucedemo");

@@ -1,4 +1,4 @@
-describe("My First Test", () => {
+describe("Heroku App Web Automation Testing", () => {
   it("Click Add Element in Add/Remove Elements menu", () => {
     cy.visit("https://the-internet.herokuapp.com/");
     cy.contains("Add/Remove").click();
