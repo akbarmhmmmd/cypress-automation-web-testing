@@ -16,7 +16,13 @@ describe("My First Test", () => {
       .then(($deleteButton) => {
         if ($deleteButton) {
           cy.wrap($deleteButton).click();
-          cy.get(".added-manually").should("not.exist");
+          cy.wrap($deleteButton)
+            .should("not.exist")
+            .then(($verifyDeleteDisappear) => {
+              if ($verifyDeleteDisappear) {
+                cy.screenshot();
+              }
+            });
         }
       });
   });
@@ -30,7 +36,12 @@ describe("My First Test", () => {
       .check()
       .should("be.checked")
       .uncheck()
-      .should("not.checked");
+      .should("not.checked")
+      .then(($verifyNotChecked) => {
+        if ($verifyNotChecked) {
+          cy.screenshot();
+        }
+      });
   });
 
   it("Click Hot Spot in Context menu", () => {
@@ -40,6 +51,18 @@ describe("My First Test", () => {
     cy.get("#hot-spot").rightclick();
     cy.on("window:alert", (txt) => {
       expect(txt).to.contains("context menu");
+    });
+  });
+
+  it("Fill Authentication in Digest Authentication Menu", () => {
+    cy.visit("https://the-internet.herokuapp.com/basic_auth", {
+      auth: {
+        username: "admin",
+        password: "admin",
+      },
+    });
+    cy.contains("Congratulations").then(($verifySuccess) => {
+      cy.screenshot();
     });
   });
 });
