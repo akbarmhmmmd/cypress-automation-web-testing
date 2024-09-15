@@ -21,6 +21,16 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Set execute permissions
+      run: chmod +x ./node_modules/.bin/cypress
+
+    - name: Start application
+      run: npm start &
+      # Ensure the application starts in the background
+
+    - name: Wait for the app to start
+      run: npx wait-on http://localhost:3000
+
     - name: Run Cypress tests
       env:
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
