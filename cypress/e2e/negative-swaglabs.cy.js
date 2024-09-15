@@ -13,7 +13,12 @@ describe("Negative - Swaglabs Web Page test", () => {
     cy.contains("LOGIN").should("be.visible").and("not.be.disabled").click();
     cy.get('[data-test="error"]')
       .should("exist")
-      .should("contain", "locked out");
+      .should("contain", "locked out")
+      .then(($locked) => {
+        if ($locked) {
+          cy.screenshot();
+        }
+      });
   });
 
   it("User login with problem user", () => {
@@ -24,6 +29,12 @@ describe("Negative - Swaglabs Web Page test", () => {
     cy.get(".app_logo").should("be.visible");
     cy.get(
       'img[src="./img/sauce-backpack-1200x1500.jpgWithGarbageOnItToBreakTheUrl"]'
-    ).should("exist");
+    )
+      .should("exist")
+      .then(($problem) => {
+        if ($problem) {
+          cy.screenshot();
+        }
+      });
   });
 });
