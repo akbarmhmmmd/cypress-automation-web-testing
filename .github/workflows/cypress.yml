@@ -3,8 +3,7 @@ name: Cypress Tests
 on:
   push:
   schedule:
-    # Daily schedule to run at 1:00 AM UTC, which is 08:00 AM WIB
-    - cron: '0 1 * * *'
+    - cron: '0 0 * * *'
 
 jobs:
   cypress-run:
