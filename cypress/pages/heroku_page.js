@@ -106,9 +106,21 @@ export class HerokuPage {
 
   removeAndAdd() {
     this.click("Remove");
-    this.verifyText("It's gone");
+    cy.get("#content")
+      .should("contain", "It's gone")
+      .then(($verify) => {
+        if ($verify) {
+          cy.screenshot();
+        }
+      });
     this.click("Add");
-    this.verifyText("It's back");
+    cy.get("#content")
+      .should("contain", "It's back")
+      .then(($verify) => {
+        if ($verify) {
+          cy.screenshot();
+        }
+      });
   }
 
   enableDisabledField(text) {
@@ -131,15 +143,5 @@ export class HerokuPage {
       });
     this.click("Disable");
     cy.get(this.field).should("have.attr", "disabled");
-  }
-
-  verifyText(text) {
-    cy.get("#content")
-      .should("contain", text)
-      .then(($verify) => {
-        if ($verify) {
-          cy.screenshot();
-        }
-      });
   }
 }
