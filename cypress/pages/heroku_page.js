@@ -23,19 +23,12 @@ export class HerokuPage {
   }
 
   goToMenu(menu) {
-    cy.xpath(`//a[contains(text(), '${menu}')]`).click();
-    cy.should("contain", menu);
+    cy.xpath(`//a[contains(text(), '${menu}')]`).as('menuBtn').click();
+    cy.get('@menuBtn').should("contain", menu);
   }
 
   addRemoveElement() {
     this.click("Add Element");
-    // cy.get("button")
-    //   .should("contain", "Add Element")
-    //   .then(($button) => {
-    //     if ($button) {
-    //       cy.wrap($button).click();
-    //     }
-    //   });
     cy.get(".added-manually")
       .should("contain", "Delete")
       .then(($deleteButton) => {
