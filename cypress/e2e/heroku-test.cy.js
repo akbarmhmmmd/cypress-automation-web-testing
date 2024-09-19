@@ -15,7 +15,6 @@ describe("Heroku App Web Automation Testing", () => {
   it("Enable/Disabled Field in Dynamic Controls menu", () => {
     page.herokuPage.visitUrl();
     page.herokuPage.goToMenu("Dynamic Controls");
-    page.herokuPage.enableField("Test");
-    page.herokuPage.disableField();
+    page.herokuPage.enableDisabledField("Test");
   });
 });
