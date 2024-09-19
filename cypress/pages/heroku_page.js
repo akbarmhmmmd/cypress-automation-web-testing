@@ -23,8 +23,8 @@ export class HerokuPage {
   }
 
   goToMenu(menu) {
-    cy.xpath(`//a[contains(text(), '${menu}')]`).as('menuBtn').click();
-    cy.get('@menuBtn').should("contain", menu);
+    cy.xpath(`//a[contains(text(), '${menu}')]`).click();
+    cy.get("#content").should("contain", menu);
   }
 
   addRemoveElement() {
