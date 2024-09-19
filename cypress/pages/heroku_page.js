@@ -3,6 +3,9 @@ export class HerokuPage {
   user = "admin";
   pass = "admin";
   field = 'input[type="text"]';
+  content = "#content";
+  finish = "#finish";
+  helloWorld = "Hello World";
 
   visitUrl() {
     cy.visit(this.heroku_url);
@@ -22,9 +25,12 @@ export class HerokuPage {
     cy.xpath(`//button[contains(text(), '${button}')]`).click();
   }
 
-  goToMenu(menu) {
+  clickMenu(menu) {
     cy.xpath(`//a[contains(text(), '${menu}')]`).click();
-    cy.get("#content").should("contain", menu);
+  }
+
+  verifyMenu(menu) {
+    cy.get(this.content).should("contain", menu);
   }
 
   addRemoveElement() {
@@ -99,7 +105,7 @@ export class HerokuPage {
 
   removeAndAdd() {
     this.click("Remove");
-    cy.get("#content")
+    cy.get(this.content)
       .should("contain", "It's gone")
       .then(($verify) => {
         if ($verify) {
@@ -107,7 +113,7 @@ export class HerokuPage {
         }
       });
     this.click("Add");
-    cy.get("#content")
+    cy.get(this.content)
       .should("contain", "It's back")
       .then(($verify) => {
         if ($verify) {
@@ -136,5 +142,12 @@ export class HerokuPage {
       });
     this.click("Disable");
     cy.get(this.field).should("have.attr", "disabled");
+  }
+
+  loadingElement() {
+    this.click("Start");
+    cy.get(this.finish, { timeout: 10000 })
+      .should("be.visible")
+      .and("contain", this.helloWorld);
   }
 }
