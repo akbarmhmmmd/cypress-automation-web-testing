@@ -47,35 +47,35 @@ describe("Swaglabs Web Automation Testing", () => {
 
 describe("Swaglabs Web Automation Testing - Negative", () => {
   beforeEach(() => {
-    page.swagLabs.visitLoginPage();
+    page.swagLabsPage.visitLoginPage();
   });
 
   it("User login with locked out user", () => {
-    page.swagLabs.lockedUser();
+    page.swagLabsPage.lockedUser();
   });
 
   it("User login with problem user", () => {
-    page.swagLabs.problemUser();
+    page.swagLabsPage.problemUser();
   });
 
   it("User do not enter First Name in Checkout Information Menu", () => {
-    page.swagLabs.standardUser();
-    page.swagLabs.goToCheckout();
-    page.swagLabs.fillData("First");
-    page.swagLabs.continueAndError("required");
+    page.swagLabsPage.standardUser();
+    page.swagLabsPage.goToCheckout();
+    page.swagLabsPage.fillData("First");
+    page.swagLabsPage.continueAndError("required");
   });
 
   it("User do not enter Last Name in Checkout Information Menu", () => {
-    page.swagLabs.standardUser();
-    page.swagLabs.goToCheckout();
-    page.swagLabs.fillData("Last");
-    page.swagLabs.continueAndError("required");
+    page.swagLabsPage.standardUser();
+    page.swagLabsPage.goToCheckout();
+    page.swagLabsPage.fillData("Last");
+    page.swagLabsPage.continueAndError("required");
   });
 
   it("User do not enter Postal Code in Checkout Information Menu", () => {
-    page.swagLabs.standardUser();
-    page.swagLabs.goToCheckout();
-    page.swagLabs.fillData("Post");
-    page.swagLabs.continueAndError("required");
+    page.swagLabsPage.standardUser();
+    page.swagLabsPage.goToCheckout();
+    page.swagLabsPage.fillData("Post");
+    page.swagLabsPage.continueAndError("required");
   });
 });
