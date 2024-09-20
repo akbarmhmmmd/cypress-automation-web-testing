@@ -6,7 +6,7 @@ export class HerokuPage {
   content = "#content";
   finish = "#finish";
   helloWorld = "Hello World";
-  screenshotPath = "/heroku.cy.js/";
+  screenshotPath = "/heroku/";
 
   visitUrl() {
     cy.visit(this.heroku_url);

@@ -1,5 +1,3 @@
-import { use } from "chai";
-
 export class SwagLabsPage {
   swaglabs_url = "https://www.saucedemo.com/v1/index.html";
   content = "#contents_wrapper";
@@ -15,11 +13,11 @@ export class SwagLabsPage {
   firstName = "First";
   lastName = "Last";
   postCode = "123";
-  screenshotPath = "/swaglabs.cy.js/";
+  screenshotPath = "/swaglabs/";
   element = {
-    cartBtn: "shopping_cart_container",
-    checkoutBtn: "btn_action",
-    continueBtn: "btn_primary",
+    cartBtn: ".shopping_cart_container",
+    checkoutBtn: ".btn_action",
+    continueBtn: ".btn_primary",
   };
 
   click(btn) {
@@ -27,7 +25,7 @@ export class SwagLabsPage {
       /\s+/g,
       ""
     );
-    cy.get(`.${this.element[`${clickButton}Btn`]}`).click();
+    cy.get(`${this.element[`${clickButton}Btn`]}`).click();
   }
 
   visitUrl() {
@@ -68,7 +66,7 @@ export class SwagLabsPage {
       .should("contain", "locked out")
       .then(($locked) => {
         if ($locked) {
-          cy.screenshot(this.screenshotPath + 'Locked Out User');
+          cy.screenshot(this.screenshotPath + "Locked Out User");
         }
       });
   }
@@ -85,7 +83,7 @@ export class SwagLabsPage {
       .should("exist")
       .then(($problem) => {
         if ($problem) {
-          cy.screenshot(this.screenshotPath + 'Problem User');
+          cy.screenshot(this.screenshotPath + "Problem User");
         }
       });
   }
@@ -170,7 +168,7 @@ export class SwagLabsPage {
       .should("contain", msg)
       .then(($failed) => {
         if ($failed) {
-          cy.screenshot(this.screenshotPath + 'Error Message');
+          cy.screenshot(this.screenshotPath + "Error Message");
         }
       });
   }
