@@ -1,40 +1,40 @@
+import { SwagLabsPage } from "../pages/swaglabs_page";
+
+const page = {
+  swagLabs: new SwagLabsPage(),
+};
+
 describe("Swaglabs Web Automation Testing - Negative", () => {
   beforeEach(() => {
-    cy.visit("https://www.saucedemo.com/v1/index.html");
-    cy.url().should("include", "saucedemo");
-    cy.get('[data-test="username"]')
-      .should("be.visible")
-      .and("not.be.disabled");
+    page.swagLabs.visitLoginPage();
   });
 
   it("User login with locked out user", () => {
-    cy.get('[data-test="username"]').type("locked_out_user");
-    cy.get('[data-test="password"]').type("secret_sauce");
-    cy.contains("LOGIN").should("be.visible").and("not.be.disabled").click();
-    cy.get('[data-test="error"]')
-      .should("exist")
-      .should("contain", "locked out")
-      .then(($locked) => {
-        if ($locked) {
-          cy.screenshot();
-        }
-      });
+    page.swagLabs.lockedUser();
   });
 
   it("User login with problem user", () => {
-    cy.get('[data-test="username"]').type("problem_user");
-    cy.get('[data-test="password"]').type("secret_sauce");
-    cy.contains("LOGIN").should("be.visible").and("not.be.disabled").click();
-    cy.url().should("include", "inventory");
-    cy.get(".app_logo").should("be.visible");
-    cy.get(
-      'img[src="./img/sauce-backpack-1200x1500.jpgWithGarbageOnItToBreakTheUrl"]'
-    )
-      .should("exist")
-      .then(($problem) => {
-        if ($problem) {
-          cy.screenshot();
-        }
-      });
+    page.swagLabs.problemUser();
+  });
+
+  it("User do not enter First Name in Checkout Information Menu", () => {
+    page.swagLabs.standardUser();
+    page.swagLabs.goToCheckout();
+    page.swagLabs.fillData("First");
+    page.swagLabs.continueAndError("required");
+  });
+
+  it("User do not enter Last Name in Checkout Information Menu", () => {
+    page.swagLabs.standardUser();
+    page.swagLabs.goToCheckout();
+    page.swagLabs.fillData("Last");
+    page.swagLabs.continueAndError("required");
+  });
+
+  it("User do not enter Postal Code in Checkout Information Menu", () => {
+    page.swagLabs.standardUser();
+    page.swagLabs.goToCheckout();
+    page.swagLabs.fillData("Post");
+    page.swagLabs.continueAndError("required");
   });
 });

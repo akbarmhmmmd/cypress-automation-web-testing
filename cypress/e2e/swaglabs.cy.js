@@ -12,27 +12,27 @@ describe("Swaglabs Web Automation Testing", () => {
   it("User success login", () => {});
 
   it("User success add Backpack item to the cart", () => {
-    page.swagLabsPage.addItemToCart(1);
+    page.swagLabsPage.addItem(1);
   });
 
   it("User success add Bike Light item to the cart", () => {
-    page.swagLabsPage.addItemToCart(2);
+    page.swagLabsPage.addItem(2);
   });
 
   it("User success add Bolt T-Shirt item to the cart", () => {
-    page.swagLabsPage.addItemToCart(3);
+    page.swagLabsPage.addItem(3);
   });
 
   it("User success add Fleece Jacket item to the cart", () => {
-    page.swagLabsPage.addItemToCart(4);
+    page.swagLabsPage.addItem(4);
   });
 
   it("User success add Onesie item to the cart", () => {
-    page.swagLabsPage.addItemToCart(5);
+    page.swagLabsPage.addItem(5);
   });
 
   it("User success add T-Shirt (Red) item to the cart", () => {
-    page.swagLabsPage.addItemToCart(6);
+    page.swagLabsPage.addItem(6);
   });
 
   it("User success add All items to the cart", () => {
