@@ -5,6 +5,7 @@ export class oneToFifty {
   adFrame = "#ad_iframe";
   dismissAd = "#dismiss-button";
   resultContent = ".resultContent";
+  score = ".level";
   screenshotPath = "/1to50/";
 
   visitUrl() {
@@ -20,12 +21,13 @@ export class oneToFifty {
   }
 
   validateSuccess() {
-    cy.get(this.resultContent)
+    cy.get(this.resultContent).should("exist").and("contain", "score");
+    cy.get(this.score)
       .should("exist")
-      .and("contain", "score")
-      .then(($success) => {
-        if ($success) {
-          cy.screenshot(this.screenshotPath + "1to50 Completed");
+      .invoke("text")
+      .then((scoreText) => {
+        if (scoreText != null) {
+          cy.screenshot(this.screenshotPath + `1to50, Your Score = ${scoreText}`);
         }
       });
   }

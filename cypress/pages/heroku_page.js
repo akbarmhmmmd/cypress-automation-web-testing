@@ -6,6 +6,9 @@ export class HerokuPage {
   content = "#content";
   finish = "#finish";
   helloWorld = "Hello World";
+  uploadField = "#file-upload";
+  uploadBtn = "#file-submit";
+  filePath = "cypress/files/test.jpg";
   screenshotPath = "/heroku/";
 
   visitUrl() {
@@ -150,5 +153,23 @@ export class HerokuPage {
     cy.get(this.finish, { timeout: 10000 })
       .should("be.visible")
       .and("contain", this.helloWorld);
+  }
+
+  upload() {
+    cy.get(this.uploadField)
+      .selectFile(this.filePath)
+      .then(($uploaded) => {
+        if ($uploaded) {
+          cy.screenshot(this.screenshotPath + "File Uploaded");
+        }
+      });
+    cy.get(this.uploadBtn).click();
+    cy.get(this.content)
+      .should("contain", "Uploaded")
+      .then(($successUpload) => {
+        if ($successUpload) {
+          cy.screenshot(this.screenshotPath + "Success Upload File");
+        }
+      });
   }
 }

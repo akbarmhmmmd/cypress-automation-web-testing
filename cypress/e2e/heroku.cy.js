@@ -56,9 +56,16 @@ describe("Heroku App Web Automation Testing", () => {
   it("Loaded Hidden Element in Dynamic Loading menu", () => {
     page.herokuPage.visitUrl();
     page.herokuPage.clickMenu("Dynamic Loading");
-    page.herokuPage.verifyMenu("Dynamic")
+    page.herokuPage.verifyMenu("Dynamic");
     page.herokuPage.clickMenu("hidden");
-    page.herokuPage.verifyMenu("hidden")
+    page.herokuPage.verifyMenu("hidden");
     page.herokuPage.loadingElement();
+  });
+
+  it("Upload File in File Upload menu", () => {
+    page.herokuPage.visitUrl();
+    page.herokuPage.clickMenu("File Upload");
+    page.herokuPage.verifyMenu("File Upload");
+    page.herokuPage.upload();
   });
 });
