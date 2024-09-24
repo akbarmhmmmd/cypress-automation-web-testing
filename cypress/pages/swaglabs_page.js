@@ -18,6 +18,7 @@ export class SwagLabsPage {
     cartBtn: ".shopping_cart_container",
     checkoutBtn: ".btn_action",
     continueBtn: ".btn_primary",
+    finishBtn: ".btn_action",
   };
 
   click(btn) {
@@ -153,9 +154,23 @@ export class SwagLabsPage {
       case "Post":
         cy.get(this.postCodeField).clear().should("not.have.value");
         break;
+      case "Success":
+        break;
       default:
         throw new Error("Option not found" + error);
     }
+  }
+
+  finishCheckout() {
+    this.click("Continue");
+    this.click("Finish");
+    cy.get(this.content)
+      .should("contain", "THANK YOU")
+      .then(($successCheckout) => {
+        if ($successCheckout) {
+          cy.screenshot(this.screenshotPath + "Success Checkout");
+        }
+      });
   }
 
   continueAndError(msg) {

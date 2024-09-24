@@ -43,6 +43,13 @@ describe("Swaglabs Web Automation Testing", () => {
     page.swagLabsPage.addAllItems();
     page.swagLabsPage.removeAllItems();
   });
+
+  it("User success Checkout product", () => {
+    page.swagLabsPage.addItem(1);
+    page.swagLabsPage.goToCheckout();
+    page.swagLabsPage.fillData("Success");
+    page.swagLabsPage.finishCheckout();
+  });
 });
 
 describe("Swaglabs Web Automation Testing - Negative", () => {
