@@ -1,4 +1,4 @@
-import global, { customScreenshot } from "./global";
+import global from "./global";
 
 export class oneToFifty {
   oneToFifty_url = "https://zzzscore.com/1to50/en/";
@@ -29,8 +29,7 @@ export class oneToFifty {
       .invoke("text")
       .then((scoreText) => {
         if (scoreText != null) {
-          customScreenshot(this.screenshotPath, `1to50, Your Score = ${scoreText}`)
-          // this.takeScreenshot(`1to50, Your Score = ${scoreText}`);
+          this.takeScreenshot(`1to50, Your Score = ${scoreText}`);
         }
       });
   }
