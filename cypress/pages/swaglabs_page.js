@@ -67,7 +67,7 @@ export class SwagLabsPage {
       .should("contain", "locked out")
       .then(($locked) => {
         if ($locked) {
-          cy.screenshot(this.screenshotPath + "Locked Out User");
+          this.takeScreenshot("Locked Out User");
         }
       });
   }
@@ -84,7 +84,7 @@ export class SwagLabsPage {
       .should("exist")
       .then(($problem) => {
         if ($problem) {
-          cy.screenshot(this.screenshotPath + "Problem User");
+          this.takeScreenshot("Problem User");
         }
       });
   }
@@ -168,7 +168,7 @@ export class SwagLabsPage {
       .should("contain", "THANK YOU")
       .then(($successCheckout) => {
         if ($successCheckout) {
-          cy.screenshot(this.screenshotPath + "Success Checkout");
+          this.takeScreenshot("Success Checkout");
         }
       });
   }
@@ -183,8 +183,12 @@ export class SwagLabsPage {
       .should("contain", msg)
       .then(($failed) => {
         if ($failed) {
-          cy.screenshot(this.screenshotPath + "Error Message");
+          this.takeScreenshot("Error Message");
         }
       });
+  }
+
+  takeScreenshot(name){
+    cy.screenshot(this.screenshotPath + name)
   }
 }

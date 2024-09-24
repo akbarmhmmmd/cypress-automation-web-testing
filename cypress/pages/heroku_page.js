@@ -48,7 +48,7 @@ export class HerokuPage {
             .should("not.exist")
             .then(($verifyDeleteDisappear) => {
               if ($verifyDeleteDisappear) {
-                cy.screenshot(this.screenshotPath + "Delete Button Disappear");
+                this.takeScreenshot("Delete Button Disappear");
               }
             });
         }
@@ -64,7 +64,7 @@ export class HerokuPage {
       .should("not.checked")
       .then(($verifyNotChecked) => {
         if ($verifyNotChecked) {
-          cy.screenshot(this.screenshotPath + "Checkbox not Checked");
+          this.takeScreenshot("Checkbox not Checked");
         }
       });
   }
@@ -80,7 +80,7 @@ export class HerokuPage {
     this.visitAuth();
     cy.contains("Congratulations").then(($verifySuccess) => {
       if ($verifySuccess) {
-        cy.screenshot(this.screenshotPath + "Auth Success");
+        this.takeScreenshot("Auth Success");
       }
     });
   }
@@ -92,7 +92,7 @@ export class HerokuPage {
       .should("have.value", `${option}`)
       .then(($selected) => {
         if ($selected) {
-          cy.screenshot(this.screenshotPath + "Option Selected = " + option);
+          this.takeScreenshot("Option Selected = " + option);
         }
       });
   }
@@ -102,7 +102,7 @@ export class HerokuPage {
       .check()
       .then(($checked) => {
         if ($checked) {
-          cy.screenshot(this.screenshotPath + "Checkbox Checked");
+          this.takeScreenshot("Checkbox Checked");
         }
       });
   }
@@ -113,7 +113,7 @@ export class HerokuPage {
       .should("contain", "It's gone")
       .then(($verify) => {
         if ($verify) {
-          cy.screenshot(this.screenshotPath + "Element Removed");
+          this.takeScreenshot("Element Removed");
         }
       });
     this.click("Add");
@@ -121,7 +121,7 @@ export class HerokuPage {
       .should("contain", "It's back")
       .then(($verify) => {
         if ($verify) {
-          cy.screenshot(this.screenshotPath + "Element is back");
+          this.takeScreenshot("Element is back");
         }
       });
   }
@@ -131,7 +131,7 @@ export class HerokuPage {
       .should("have.attr", "disabled")
       .then(($disabled) => {
         if ($disabled) {
-          cy.screenshot(this.screenshotPath + "Field Disabled");
+          this.takeScreenshot("Field Disabled");
         }
       });
     this.click("Enable");
@@ -141,7 +141,7 @@ export class HerokuPage {
       .should("have.value", text)
       .then(($enabled) => {
         if ($enabled) {
-          cy.screenshot(this.screenshotPath + "Field Enabled");
+         this.takeScreenshot("Field Enabled");
         }
       });
     this.click("Disable");
@@ -160,7 +160,7 @@ export class HerokuPage {
       .selectFile(this.filePath)
       .then(($uploaded) => {
         if ($uploaded) {
-          cy.screenshot(this.screenshotPath + "File Uploaded");
+          this.takeScreenshot("File Uploaded");
         }
       });
     cy.get(this.uploadBtn).click();
@@ -168,8 +168,12 @@ export class HerokuPage {
       .should("contain", "Uploaded")
       .then(($successUpload) => {
         if ($successUpload) {
-          cy.screenshot(this.screenshotPath + "Success Upload File");
+          this.takeScreenshot("Success Upload File");
         }
       });
+  }
+
+  takeScreenshot(name){
+    cy.screenshot(this.screenshotPath + name)
   }
 }

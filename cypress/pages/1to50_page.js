@@ -1,3 +1,5 @@
+import global, { customScreenshot } from "./global";
+
 export class oneToFifty {
   oneToFifty_url = "https://zzzscore.com/1to50/en/";
   content = ".wrap";
@@ -27,8 +29,13 @@ export class oneToFifty {
       .invoke("text")
       .then((scoreText) => {
         if (scoreText != null) {
-          cy.screenshot(this.screenshotPath + `1to50, Your Score = ${scoreText}`);
+          customScreenshot(this.screenshotPath, `1to50, Your Score = ${scoreText}`)
+          // this.takeScreenshot(`1to50, Your Score = ${scoreText}`);
         }
       });
+  }
+
+  takeScreenshot(name) {
+    cy.screenshot(this.screenshotPath + name);
   }
 }
